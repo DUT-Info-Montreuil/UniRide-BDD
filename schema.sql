@@ -56,9 +56,9 @@ CREATE TABLE uniride.ur_user(
 
 CREATE TABLE uniride.ur_document_verification(
    v_id SERIAL,
-   v_license_verified BOOLEAN NOT NULL,
-   v_id_card_verified BOOLEAN NOT NULL,
-   v_school_certificate_verified BOOLEAN NOT NULL,
+   v_license_verified BOOLEAN NOT NULL DEFAUlT false,
+   v_id_card_verified BOOLEAN NOT NULL DEFAUlT false,
+   v_school_certificate_verified BOOLEAN NOT NULL DEFAUlT false,
    v_timestamp_modification VARCHAR(50),
    u_id INT,
    PRIMARY KEY(v_id),
