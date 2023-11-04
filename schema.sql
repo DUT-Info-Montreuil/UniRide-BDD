@@ -40,7 +40,7 @@ CREATE TABLE uniride.ur_user(
    u_password TEXT NOT NULL,
    u_timestamp_creation timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    u_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   u_profile_picture_path TEXT,
+   u_profile_picture TEXT,
    u_gender VARCHAR(2) NOT NULL,
    u_firstname VARCHAR(50) NOT NULL,
    u_phone_number VARCHAR(9) NOT NULL,
