@@ -124,16 +124,6 @@ CREATE TABLE uniride.ur_message(
    FOREIGN KEY(u_id_1) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE
 );
 
-CREATE TABLE uniride.ur_email_verification(
-   ur_id SERIAL,
-   v_timestamp timestamp NOT NULL,
-   v_code CHAR(5) NOT NULL,
-   u_id INT NOT NULL,
-   PRIMARY KEY(ur_id),
-   UNIQUE(u_id),
-   FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE
-);
-
 CREATE TABLE uniride.ur_trip_validation(
    v_id SERIAL,
    v_code CHAR(4) NOT NULL,
