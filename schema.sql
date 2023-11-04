@@ -59,7 +59,7 @@ CREATE TABLE uniride.ur_document_verification(
    v_license_verified BOOLEAN NOT NULL DEFAUlT false,
    v_id_card_verified BOOLEAN NOT NULL DEFAUlT false,
    v_school_certificate_verified BOOLEAN NOT NULL DEFAUlT false,
-   v_timestamp_modification VARCHAR(50),
+   d_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    u_id INT,
    PRIMARY KEY(v_id),
    FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE
