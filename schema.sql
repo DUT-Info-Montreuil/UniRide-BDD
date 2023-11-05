@@ -87,8 +87,8 @@ CREATE TABLE uniride.ur_vehicle(
 CREATE TABLE uniride.ur_trip(
    t_id SERIAL,
    t_total_passenger_count INT NOT NULL,
-   t_timestamp_creation timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   t_timestamp_proposed timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   t_timestamp_creation timestamp NOT NULL,
+   t_timestamp_proposed timestamp NOT NULL,
    t_status INT,
    t_price MONEY NOT NULL,
    t_user_id INT NOT NULL,
@@ -136,12 +136,12 @@ CREATE TABLE uniride.ur_assign(
 );
 
 CREATE TABLE uniride.ur_join(
-   j_user_id INT,
-   j_trip_id INT,
-   j_accepted BOOLEAN NOT NULL,
-   j_passenger_count INT,
-   j_date_requested timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY(j_user_id, j_trip_id),
-   FOREIGN KEY(j_user_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
-   FOREIGN KEY(j_trip_id) REFERENCES uniride.ur_trip(t_id)
+   u_id INT,
+   t_id INT,
+   r_accepted BOOLEAN NOT NULL,
+   r_passenger_count INT,
+   r_date_requested timestamp NOT NULL,
+   PRIMARY KEY(u_id, t_id),
+   FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
+   FOREIGN KEY(t_id) REFERENCES uniride.ur_trip(t_id)
 );
