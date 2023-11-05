@@ -1,12 +1,12 @@
-DROP SCHEMA uniride CASCADE;
+DROP SCHEMA IF EXISTS uniride CASCADE;
 CREATE SCHEMA uniride;
 
 CREATE TABLE uniride.ur_role(
    p_id SERIAL,
    p_name VARCHAR(30) NOT NULL,
    p_description VARCHAR(100),
-   p_timestamp_addition timestamp NOT NULL,
-   p_timestamp_modification timestamp NOT NULL,
+   p_timestamp_addition timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   p_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY(p_id)
 );
 
@@ -19,18 +19,10 @@ CREATE TABLE uniride.ur_address(
    a_latitude DECIMAL(15,10) NOT NULL,
    a_longitude DECIMAL(15,10) NOT NULL,
    a_description VARCHAR(50),
-   a_timestamp_modification timestamp NOT NULL,
+   a_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY(a_id)
 );
 
-CREATE TABLE uniride.ur_daily(
-   q_id SERIAL,
-   q_day_id INT,
-   q_timestamp_departure timestamp NOT NULL,
-   q_timestamp_return timestamp NOT NULL,
-   q_active boolean NOT NULL,
-   PRIMARY KEY(q_id)
-);
 
 CREATE TABLE uniride.ur_user(
    u_id SERIAL,
@@ -40,7 +32,7 @@ CREATE TABLE uniride.ur_user(
    u_password TEXT NOT NULL,
    u_timestamp_creation timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    u_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   u_profile_picture_path TEXT,
+   u_profile_picture TEXT,
    u_gender VARCHAR(2) NOT NULL,
    u_firstname VARCHAR(50) NOT NULL,
    u_phone_number VARCHAR(9) NOT NULL,
@@ -56,10 +48,10 @@ CREATE TABLE uniride.ur_user(
 
 CREATE TABLE uniride.ur_document_verification(
    v_id SERIAL,
-   v_license_verified BOOLEAN NOT NULL,
-   v_id_card_verified BOOLEAN NOT NULL,
-   v_school_certificate_verified BOOLEAN NOT NULL,
-   v_timestamp_modification VARCHAR(50),
+   v_license_verified BOOLEAN NOT NULL DEFAUlT false,
+   v_id_card_verified BOOLEAN NOT NULL DEFAUlT false,
+   v_school_certificate_verified BOOLEAN NOT NULL DEFAUlT false,
+   d_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    u_id INT,
    PRIMARY KEY(v_id),
    FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE
@@ -70,8 +62,8 @@ CREATE TABLE uniride.ur_documents(
    d_license TEXT,
    d_id_card TEXT,
    d_school_certificate TEXT,
-   d_timestamp_addition timestamp NOT NULL,
-   d_timestamp_modification timestamp NOT NULL,
+   d_timestamp_addition timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   d_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    u_id INT,
    PRIMARY KEY(d_id),
    FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE
@@ -84,8 +76,8 @@ CREATE TABLE uniride.ur_vehicle(
    v_country_license_plate VARCHAR(2) NOT NULL,
    v_color VARCHAR(15) NOT NULL,
    v_brand VARCHAR(50) NOT NULL,
-   v_timestamp_addition timestamp NOT NULL,
-   v_timestamp_modification timestamp NOT NULL,
+   v_timestamp_addition timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   v_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    u_id INT NOT NULL,
    PRIMARY KEY(v_id),
    UNIQUE(u_id),
@@ -95,43 +87,30 @@ CREATE TABLE uniride.ur_vehicle(
 CREATE TABLE uniride.ur_trip(
    t_id SERIAL,
    t_total_passenger_count INT NOT NULL,
-   t_date_proposed timestamp NOT NULL,
-   t_timestamp_creation timestamp NOT NULL,
-   t_timestamp_occurrence timestamp NOT NULL,
+   t_timestamp_creation timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   t_timestamp_proposed timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    t_status INT,
-   t_price numeric NOT NULL,
-   q_id INT NOT NULL,
-   u_id INT NOT NULL,
-   a_id INT NOT NULL,
-   a_id_1 INT NOT NULL,
+   t_price MONEY NOT NULL,
+   t_user_id INT NOT NULL,
+   t_address_depart_id INT NOT NULL,
+   t_address_arrival_id INT NOT NULL,
+   t_initial_price DECIMAL(10, 2) DEFAULT 1.00,
    PRIMARY KEY(t_id),
-   UNIQUE(q_id),
-   FOREIGN KEY(q_id) REFERENCES uniride.ur_daily(q_id),
-   FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
-   FOREIGN KEY(a_id) REFERENCES uniride.ur_address(a_id),
-   FOREIGN KEY(a_id_1) REFERENCES uniride.ur_address(a_id)
+   FOREIGN KEY(t_user_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
+   FOREIGN KEY(t_address_depart_id) REFERENCES uniride.ur_address(a_id),
+   FOREIGN KEY(t_address_arrival_id) REFERENCES uniride.ur_address(a_id)
 );
 
 CREATE TABLE uniride.ur_message(
    m_id SERIAL,
    m_content TEXT NOT NULL,
-   m_timestamp_sent timestamp NOT NULL,
+   m_timestamp_sent timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    m_read BOOLEAN NOT NULL,
    u_id INT NOT NULL,
    u_id_1 INT NOT NULL,
    PRIMARY KEY(m_id),
    FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
    FOREIGN KEY(u_id_1) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE
-);
-
-CREATE TABLE uniride.ur_email_verification(
-   ur_id SERIAL,
-   v_timestamp timestamp NOT NULL,
-   v_code CHAR(5) NOT NULL,
-   u_id INT NOT NULL,
-   PRIMARY KEY(ur_id),
-   UNIQUE(u_id),
-   FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE
 );
 
 CREATE TABLE uniride.ur_trip_validation(
@@ -157,14 +136,12 @@ CREATE TABLE uniride.ur_assign(
 );
 
 CREATE TABLE uniride.ur_join(
-   u_id INT,
-   t_id INT,
-   q_id INT,
-   r_accepted BOOLEAN NOT NULL,
-   r_passenger_count INT,
-   r_date_requested timestamp NOT NULL,
-   PRIMARY KEY(u_id, t_id, q_id),
-   FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
-   FOREIGN KEY(t_id) REFERENCES uniride.ur_trip(t_id),
-   FOREIGN KEY(q_id) REFERENCES uniride.ur_daily(q_id)
+   j_user_id INT,
+   j_trip_id INT,
+   j_accepted BOOLEAN NOT NULL,
+   j_passenger_count INT,
+   j_date_requested timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY(j_user_id, j_trip_id),
+   FOREIGN KEY(j_user_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
+   FOREIGN KEY(j_trip_id) REFERENCES uniride.ur_trip(t_id)
 );
