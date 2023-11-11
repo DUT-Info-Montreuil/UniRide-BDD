@@ -90,7 +90,7 @@ CREATE TABLE uniride.ur_trip(
    t_timestamp_creation timestamp NOT NULL,
    t_timestamp_proposed timestamp NOT NULL,
    t_status INT,
-   t_price MONEY NOT NULL,
+   t_price DECIMAL(10, 2) NOT NULL,
    t_user_id INT NOT NULL,
    t_address_depart_id INT NOT NULL,
    t_address_arrival_id INT NOT NULL,
