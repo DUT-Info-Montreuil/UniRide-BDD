@@ -87,8 +87,8 @@ CREATE TABLE uniride.ur_vehicle(
 CREATE TABLE uniride.ur_trip(
    t_id SERIAL,
    t_total_passenger_count INT NOT NULL,
-   t_timestamp_creation timestamp NOT NULL,
-   t_timestamp_proposed timestamp NOT NULL,
+   t_timestamp_creation timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   t_timestamp_proposed timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    t_status INT,
    t_price DECIMAL(10, 2) NOT NULL,
    t_user_id INT NOT NULL,
