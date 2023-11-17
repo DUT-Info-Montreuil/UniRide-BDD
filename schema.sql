@@ -18,7 +18,6 @@ CREATE TABLE uniride.ur_address(
    a_postal_code VARCHAR(5) NOT NULL,
    a_latitude DECIMAL(15,10) NOT NULL,
    a_longitude DECIMAL(15,10) NOT NULL,
-   a_description VARCHAR(50),
    a_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY(a_id)
 );
