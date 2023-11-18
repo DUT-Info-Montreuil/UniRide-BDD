@@ -38,11 +38,11 @@ CREATE TABLE uniride.ur_user(
    u_email_verified BOOLEAN NOT NULL DEFAULT false,
    u_status BOOLEAN NOT NULL DEFAULT false,
    u_description VARCHAR(100),
-   u_home_adress_id INT,
-   u_work_adress_id INT,
+   u_home_address_id INT,
+   u_work_address_id INT,
    PRIMARY KEY(u_id),
-   FOREIGN KEY(u_home_adress_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE,
-   FOREIGN KEY(u_work_adress_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE
+   FOREIGN KEY(u_home_address_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE,
+   FOREIGN KEY(u_work_address_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE
 );
 
 CREATE TABLE uniride.ur_document_verification(
