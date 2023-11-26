@@ -68,7 +68,7 @@ CREATE TABLE uniride.ur_documents(
    FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE
 );
 
-CREATE TABLE uniride.ur_vehicle(
+CREATE TABLE uniride.ur_vehicule(
    v_id SERIAL,
    v_model VARCHAR(64) NOT NULL,
    v_license_plate VARCHAR(16),
