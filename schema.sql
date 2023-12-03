@@ -91,7 +91,7 @@ CREATE TABLE uniride.ur_trip(
    t_status INT,
    t_price DECIMAL(10, 2) NOT NULL,
    t_user_id INT NOT NULL,
-   t_address_depart_id INT NOT NULL,
+   t_address_departure_id INT NOT NULL,
    t_address_arrival_id INT NOT NULL,
    t_initial_price DECIMAL(10, 2) DEFAULT 1.00,
    PRIMARY KEY(t_id),
