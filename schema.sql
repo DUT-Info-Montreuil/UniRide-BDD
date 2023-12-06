@@ -137,9 +137,9 @@ CREATE TABLE uniride.ur_assign(
 CREATE TABLE uniride.ur_join(
    u_id INT,
    t_id INT,
-   r_accepted BOOLEAN NOT NULL,
+   r_accepted BOOLEAN NOT NULL DEFAULT false,
    r_passenger_count INT,
-   r_date_requested timestamp NOT NULL,
+   r_date_requested timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY(u_id, t_id),
    FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
    FOREIGN KEY(t_id) REFERENCES uniride.ur_trip(t_id)
