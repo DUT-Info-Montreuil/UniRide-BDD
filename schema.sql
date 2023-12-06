@@ -34,7 +34,7 @@ CREATE TABLE uniride.ur_user(
    u_profile_picture TEXT,
    u_gender VARCHAR(2) NOT NULL,
    u_firstname VARCHAR(50) NOT NULL,
-   u_phone_number VARCHAR(9) NOT NULL,
+   u_phone_number VARCHAR(10) NOT NULL,
    u_email_verified BOOLEAN NOT NULL DEFAULT false,
    u_status BOOLEAN NOT NULL DEFAULT false,
    u_description VARCHAR(100),
