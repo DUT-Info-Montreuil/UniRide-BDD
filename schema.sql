@@ -96,7 +96,7 @@ CREATE TABLE uniride.ur_trip(
    t_initial_price DECIMAL(10, 2) DEFAULT 1.00,
    PRIMARY KEY(t_id),
    FOREIGN KEY(t_user_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
-   FOREIGN KEY(t_address_depart_id) REFERENCES uniride.ur_address(a_id),
+   FOREIGN KEY(t_address_departure_id) REFERENCES uniride.ur_address(a_id),
    FOREIGN KEY(t_address_arrival_id) REFERENCES uniride.ur_address(a_id)
 );
 
