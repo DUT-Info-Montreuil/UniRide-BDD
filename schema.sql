@@ -34,7 +34,7 @@ CREATE TABLE uniride.ur_user(
    u_profile_picture TEXT,
    u_gender VARCHAR(2) NOT NULL,
    u_firstname VARCHAR(50) NOT NULL,
-   u_phone_number VARCHAR(9) NOT NULL,
+   u_phone_number VARCHAR(10) NOT NULL,
    u_email_verified BOOLEAN NOT NULL DEFAULT false,
    u_status BOOLEAN NOT NULL DEFAULT false,
    u_description VARCHAR(100),
@@ -92,12 +92,12 @@ CREATE TABLE uniride.ur_trip(
    t_status INT,
    t_price DECIMAL(10, 2) NOT NULL,
    t_user_id INT NOT NULL,
-   t_address_depart_id INT NOT NULL,
+   t_address_departure_id INT NOT NULL,
    t_address_arrival_id INT NOT NULL,
    t_initial_price DECIMAL(10, 2) DEFAULT 1.00,
    PRIMARY KEY(t_id),
    FOREIGN KEY(t_user_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
-   FOREIGN KEY(t_address_depart_id) REFERENCES uniride.ur_address(a_id),
+   FOREIGN KEY(t_address_departure_id) REFERENCES uniride.ur_address(a_id),
    FOREIGN KEY(t_address_arrival_id) REFERENCES uniride.ur_address(a_id)
 );
 
@@ -138,9 +138,9 @@ CREATE TABLE uniride.ur_assign(
 CREATE TABLE uniride.ur_join(
    u_id INT,
    t_id INT,
-   r_accepted BOOLEAN NOT NULL,
+   r_accepted BOOLEAN NOT NULL DEFAULT false,
    r_passenger_count INT,
-   r_date_requested timestamp NOT NULL,
+   r_date_requested timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY(u_id, t_id),
    FOREIGN KEY(u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE,
    FOREIGN KEY(t_id) REFERENCES uniride.ur_trip(t_id)
