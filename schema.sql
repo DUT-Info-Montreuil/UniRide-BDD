@@ -75,6 +75,7 @@ CREATE TABLE uniride.ur_vehicule(
    v_country_license_plate VARCHAR(2) NOT NULL,
    v_color VARCHAR(15) NOT NULL,
    v_brand VARCHAR(50) NOT NULL,
+   v_total_places INT NOT NULL,
    v_timestamp_addition timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    v_timestamp_modification timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    u_id INT NOT NULL,
