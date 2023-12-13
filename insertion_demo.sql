@@ -146,7 +146,7 @@ INSERT INTO uniride.ur_address (
 
 INSERT INTO uniride.ur_trip (
     t_total_passenger_count, t_timestamp_creation, t_timestamp_proposed, t_status, t_price,
-    t_user_id, t_address_depart_id, t_address_arrival_id, t_initial_price
+    t_user_id, t_address_departure_id, t_address_arrival_id, t_initial_price
 ) VALUES (
     2, CURRENT_TIMESTAMP, '2023-12-15 09:00:00', 1, 2.00, 
     2, 3, 1, 1.00
@@ -154,7 +154,7 @@ INSERT INTO uniride.ur_trip (
 
 INSERT INTO uniride.ur_trip (
     t_total_passenger_count, t_timestamp_creation, t_timestamp_proposed, t_status, t_price,
-    t_user_id, t_address_depart_id, t_address_arrival_id, t_initial_price
+    t_user_id, t_address_departure_id, t_address_arrival_id, t_initial_price
 ) VALUES (
     2, CURRENT_TIMESTAMP, '2023-12-15 09:00:00', 1, 2.00, 
     2, 4, 1, 1.00
