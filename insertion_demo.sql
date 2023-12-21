@@ -123,7 +123,7 @@ INSERT INTO uniride.ur_role (
 INSERT INTO uniride.ur_role (
     p_id,p_name, p_description, p_timestamp_addition, p_timestamp_modification
 ) VALUES (
-    3,'pending', 'Utilisateur n\'ayant âs validé ses documents.', 
+    3,'pending', 'Utilisateur qui as pas validé ses documents.', 
     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
 );
 
