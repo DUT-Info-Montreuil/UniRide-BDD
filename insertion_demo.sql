@@ -128,27 +128,27 @@ INSERT INTO uniride.ur_role (
 );
 
 INSERT INTO uniride.ur_address (
-    a_street_number, a_street_name, a_city, a_postal_code, a_latitude, a_longitude, a_timestamp_modification
+    a_street_number, a_street_name, a_city, a_postal_code, a_latitude, a_longitude
 ) VALUES (
-    '140', 'Rue de la Nouvelle France', 'Montreuil', '93100', '48.8625700000', '2.4642050000', CURRENT_TIMESTAMP
+    '140', 'Rue de la Nouvelle France', 'Montreuil', '93100', '48.8625700000', '2.4642050000'
 );
 
 INSERT INTO uniride.ur_address (
-    a_street_number, a_street_name, a_city, a_postal_code, a_latitude, a_longitude, a_timestamp_modification
+    a_street_number, a_street_name, a_city, a_postal_code, a_latitude, a_longitude
 ) VALUES (
-    '5', 'Rue Curial', 'Paris', '75019', '48.8899830000', '2.3715060000', CURRENT_TIMESTAMP
+    '5', 'Rue Curial', 'Paris', '75019', '48.8899830000', '2.3715060000'
 );
 
 INSERT INTO uniride.ur_address (
-    a_street_number, a_street_name, a_city, a_postal_code, a_latitude, a_longitude, a_timestamp_modification
+    a_street_number, a_street_name, a_city, a_postal_code, a_latitude, a_longitude
 ) VALUES (
-    '4', 'Rue des Cailloux', 'Clichy', '92110', '48.8957510000', '2.3054130000', CURRENTs_TIMESTAMP
+    '4', 'Rue des Cailloux', 'Clichy', '92110', '48.8957510000', '2.3054130000'
 );
 
 INSERT INTO uniride.ur_address (
-    a_street_number, a_street_name, a_city, a_postal_code, a_latitude, a_longitude, a_timestamp_modification
+    a_street_number, a_street_name, a_city, a_postal_code, a_latitude, a_longitude
 ) VALUES (
-    '6', 'Rue des Cailloux', 'Clichy', '92110', '48.8957240000', '2.3056710000', CURRENTs_TIMESTAMP
+    '6', 'Rue des Cailloux', 'Clichy', '92110', '48.8957240000', '2.3056710000'
 );
 
 INSERT INTO uniride.ur_trip (
