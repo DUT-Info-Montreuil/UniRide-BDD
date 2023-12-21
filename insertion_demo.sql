@@ -99,24 +99,31 @@ INSERT INTO uniride.ur_user (
 
 
 INSERT INTO uniride.ur_role (
-    p_name, p_description, p_timestamp_addition, p_timestamp_modification
+    p_id,p_name, p_description, p_timestamp_addition, p_timestamp_modification
 ) VALUES (
-    'admin', 'Administrateur système avec des droits étendus pour gérer lapplication de covoiturage.', 
+    0,'administrateur', 'Administrateur système avec des droits étendus pour gérer lapplication de covoiturage.', 
     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
 );
 
 
 INSERT INTO uniride.ur_role (
-    p_name, p_description, p_timestamp_addition, p_timestamp_modification
+     p_id,p_name, p_description, p_timestamp_addition, p_timestamp_modification
 ) VALUES (
-    'driver', 'Conducteur autorisé à proposer des trajets et à conduire des passagers.', 
+    1,'driver', 'Conducteur autorisé à proposer des trajets et à conduire des passagers.', 
     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
 );
 
 INSERT INTO uniride.ur_role (
-    p_name, p_description, p_timestamp_addition, p_timestamp_modification
+    p_id,p_name, p_description, p_timestamp_addition, p_timestamp_modification
 ) VALUES (
-    'passenger', 'Passager ayant la possibilité de rechercher et de réserver des trajets.', 
+    2,'passenger', 'Passager ayant la possibilité de rechercher et de réserver des trajets.', 
+    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+);
+
+INSERT INTO uniride.ur_role (
+    p_id,p_name, p_description, p_timestamp_addition, p_timestamp_modification
+) VALUES (
+    3,'en attente', 'Utilisateur n\'ayant âs validé ses documents.', 
     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
 );
 
