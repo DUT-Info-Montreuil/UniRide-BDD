@@ -1,0 +1,770 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.1 (Debian 16.1-1.pgdg120+1)
+-- Dumped by pg_dump version 16.1
+
+-- Started on 2024-01-05 18:35:08 UTC
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 6 (class 2615 OID 32773)
+-- Name: uniride; Type: SCHEMA; Schema: -; Owner: rayan
+--
+
+CREATE SCHEMA uniride;
+
+
+ALTER SCHEMA uniride OWNER TO rayan;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 219 (class 1259 OID 32784)
+-- Name: ur_address; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_address (
+    a_id integer NOT NULL,
+    a_street_number character varying(10) NOT NULL,
+    a_street_name character varying(255) NOT NULL,
+    a_city character varying(255) NOT NULL,
+    a_postal_code character varying(5) NOT NULL,
+    a_latitude numeric(15,10) NOT NULL,
+    a_longitude numeric(15,10) NOT NULL,
+    a_timestamp_modification timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE uniride.ur_address OWNER TO rayan;
+
+--
+-- TOC entry 218 (class 1259 OID 32783)
+-- Name: ur_address_a_id_seq; Type: SEQUENCE; Schema: uniride; Owner: rayan
+--
+
+CREATE SEQUENCE uniride.ur_address_a_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE uniride.ur_address_a_id_seq OWNER TO rayan;
+
+--
+-- TOC entry 3471 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: ur_address_a_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
+--
+
+ALTER SEQUENCE uniride.ur_address_a_id_seq OWNED BY uniride.ur_address.a_id;
+
+
+--
+-- TOC entry 232 (class 1259 OID 32925)
+-- Name: ur_assign; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_assign (
+    r_id integer NOT NULL,
+    u_id integer NOT NULL
+);
+
+
+ALTER TABLE uniride.ur_assign OWNER TO rayan;
+
+--
+-- TOC entry 223 (class 1259 OID 32826)
+-- Name: ur_document_verification; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_document_verification (
+    v_id integer NOT NULL,
+    v_license_verified integer DEFAULT 0 NOT NULL,
+    v_id_card_verified integer DEFAULT 0 NOT NULL,
+    v_school_certificate_verified integer DEFAULT 0 NOT NULL,
+    v_insurance_verified integer DEFAULT 0 NOT NULL,
+    v_timestamp_modification timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    u_id integer
+);
+
+
+ALTER TABLE uniride.ur_document_verification OWNER TO rayan;
+
+--
+-- TOC entry 222 (class 1259 OID 32825)
+-- Name: ur_document_verification_v_id_seq; Type: SEQUENCE; Schema: uniride; Owner: rayan
+--
+
+CREATE SEQUENCE uniride.ur_document_verification_v_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE uniride.ur_document_verification_v_id_seq OWNER TO rayan;
+
+--
+-- TOC entry 3472 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: ur_document_verification_v_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
+--
+
+ALTER SEQUENCE uniride.ur_document_verification_v_id_seq OWNED BY uniride.ur_document_verification.v_id;
+
+
+--
+-- TOC entry 225 (class 1259 OID 32843)
+-- Name: ur_documents; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_documents (
+    d_id integer NOT NULL,
+    d_license text,
+    d_id_card text,
+    d_school_certificate text,
+    d_insurance text,
+    d_timestamp_addition timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    d_timestamp_modification timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    u_id integer
+);
+
+
+ALTER TABLE uniride.ur_documents OWNER TO rayan;
+
+--
+-- TOC entry 224 (class 1259 OID 32842)
+-- Name: ur_documents_d_id_seq; Type: SEQUENCE; Schema: uniride; Owner: rayan
+--
+
+CREATE SEQUENCE uniride.ur_documents_d_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE uniride.ur_documents_d_id_seq OWNER TO rayan;
+
+--
+-- TOC entry 3473 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: ur_documents_d_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
+--
+
+ALTER SEQUENCE uniride.ur_documents_d_id_seq OWNED BY uniride.ur_documents.d_id;
+
+
+--
+-- TOC entry 233 (class 1259 OID 32940)
+-- Name: ur_join; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_join (
+    u_id integer NOT NULL,
+    t_id integer NOT NULL,
+    r_accepted integer DEFAULT 0 NOT NULL,
+    r_passenger_count integer,
+    r_date_requested timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE uniride.ur_join OWNER TO rayan;
+
+--
+-- TOC entry 217 (class 1259 OID 32775)
+-- Name: ur_role; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_role (
+    r_id integer NOT NULL,
+    p_name character varying(30) NOT NULL,
+    p_description character varying(100),
+    p_timestamp_addition timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    p_timestamp_modification timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE uniride.ur_role OWNER TO rayan;
+
+--
+-- TOC entry 216 (class 1259 OID 32774)
+-- Name: ur_role_r_id_seq; Type: SEQUENCE; Schema: uniride; Owner: rayan
+--
+
+CREATE SEQUENCE uniride.ur_role_r_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE uniride.ur_role_r_id_seq OWNER TO rayan;
+
+--
+-- TOC entry 3474 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: ur_role_r_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
+--
+
+ALTER SEQUENCE uniride.ur_role_r_id_seq OWNED BY uniride.ur_role.r_id;
+
+
+--
+-- TOC entry 229 (class 1259 OID 32875)
+-- Name: ur_trip; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_trip (
+    t_id integer NOT NULL,
+    t_total_passenger_count integer NOT NULL,
+    t_timestamp_creation timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    t_timestamp_proposed timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    t_status integer,
+    t_price numeric(10,2) NOT NULL,
+    t_user_id integer NOT NULL,
+    t_address_departure_id integer NOT NULL,
+    t_address_arrival_id integer NOT NULL,
+    t_initial_price numeric(10,2) DEFAULT 1.00
+);
+
+
+ALTER TABLE uniride.ur_trip OWNER TO rayan;
+
+--
+-- TOC entry 228 (class 1259 OID 32874)
+-- Name: ur_trip_t_id_seq; Type: SEQUENCE; Schema: uniride; Owner: rayan
+--
+
+CREATE SEQUENCE uniride.ur_trip_t_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE uniride.ur_trip_t_id_seq OWNER TO rayan;
+
+--
+-- TOC entry 3475 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: ur_trip_t_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
+--
+
+ALTER SEQUENCE uniride.ur_trip_t_id_seq OWNED BY uniride.ur_trip.t_id;
+
+
+--
+-- TOC entry 231 (class 1259 OID 32900)
+-- Name: ur_trip_validation; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_trip_validation (
+    v_id integer NOT NULL,
+    v_code character(4) NOT NULL,
+    u_id integer NOT NULL,
+    t_id integer NOT NULL,
+    u_id_1 integer NOT NULL
+);
+
+
+ALTER TABLE uniride.ur_trip_validation OWNER TO rayan;
+
+--
+-- TOC entry 230 (class 1259 OID 32899)
+-- Name: ur_trip_validation_v_id_seq; Type: SEQUENCE; Schema: uniride; Owner: rayan
+--
+
+CREATE SEQUENCE uniride.ur_trip_validation_v_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE uniride.ur_trip_validation_v_id_seq OWNER TO rayan;
+
+--
+-- TOC entry 3476 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: ur_trip_validation_v_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
+--
+
+ALTER SEQUENCE uniride.ur_trip_validation_v_id_seq OWNED BY uniride.ur_trip_validation.v_id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 32794)
+-- Name: ur_user; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_user (
+    u_id integer NOT NULL,
+    r_id integer DEFAULT 3 NOT NULL,
+    u_login character varying(50) NOT NULL,
+    u_lastname character varying(50) NOT NULL,
+    u_student_email character varying(50) NOT NULL,
+    u_password text NOT NULL,
+    u_timestamp_creation timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    u_timestamp_modification timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    u_profile_picture text,
+    u_gender character varying(2) NOT NULL,
+    u_firstname character varying(50) NOT NULL,
+    u_phone_number character varying(10) NOT NULL,
+    u_email_verified boolean DEFAULT false NOT NULL,
+    u_status integer DEFAULT 3 NOT NULL,
+    u_description character varying(100),
+    u_home_address_id integer,
+    u_work_address_id integer
+);
+
+
+ALTER TABLE uniride.ur_user OWNER TO rayan;
+
+--
+-- TOC entry 220 (class 1259 OID 32793)
+-- Name: ur_user_u_id_seq; Type: SEQUENCE; Schema: uniride; Owner: rayan
+--
+
+CREATE SEQUENCE uniride.ur_user_u_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE uniride.ur_user_u_id_seq OWNER TO rayan;
+
+--
+-- TOC entry 3477 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: ur_user_u_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
+--
+
+ALTER SEQUENCE uniride.ur_user_u_id_seq OWNED BY uniride.ur_user.u_id;
+
+
+--
+-- TOC entry 227 (class 1259 OID 32859)
+-- Name: ur_vehicule; Type: TABLE; Schema: uniride; Owner: rayan
+--
+
+CREATE TABLE uniride.ur_vehicule (
+    v_id integer NOT NULL,
+    v_model character varying(64) NOT NULL,
+    v_license_plate character varying(16),
+    v_country_license_plate character varying(2) NOT NULL,
+    v_color character varying(15) NOT NULL,
+    v_brand character varying(50) NOT NULL,
+    v_total_places integer NOT NULL,
+    v_timestamp_addition timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    v_timestamp_modification timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    u_id integer NOT NULL
+);
+
+
+ALTER TABLE uniride.ur_vehicule OWNER TO rayan;
+
+--
+-- TOC entry 226 (class 1259 OID 32858)
+-- Name: ur_vehicule_v_id_seq; Type: SEQUENCE; Schema: uniride; Owner: rayan
+--
+
+CREATE SEQUENCE uniride.ur_vehicule_v_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE uniride.ur_vehicule_v_id_seq OWNER TO rayan;
+
+--
+-- TOC entry 3478 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: ur_vehicule_v_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
+--
+
+ALTER SEQUENCE uniride.ur_vehicule_v_id_seq OWNED BY uniride.ur_vehicule.v_id;
+
+
+--
+-- TOC entry 3250 (class 2604 OID 32787)
+-- Name: ur_address a_id; Type: DEFAULT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_address ALTER COLUMN a_id SET DEFAULT nextval('uniride.ur_address_a_id_seq'::regclass);
+
+
+--
+-- TOC entry 3258 (class 2604 OID 32829)
+-- Name: ur_document_verification v_id; Type: DEFAULT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_document_verification ALTER COLUMN v_id SET DEFAULT nextval('uniride.ur_document_verification_v_id_seq'::regclass);
+
+
+--
+-- TOC entry 3264 (class 2604 OID 32846)
+-- Name: ur_documents d_id; Type: DEFAULT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_documents ALTER COLUMN d_id SET DEFAULT nextval('uniride.ur_documents_d_id_seq'::regclass);
+
+
+--
+-- TOC entry 3247 (class 2604 OID 32778)
+-- Name: ur_role r_id; Type: DEFAULT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_role ALTER COLUMN r_id SET DEFAULT nextval('uniride.ur_role_r_id_seq'::regclass);
+
+
+--
+-- TOC entry 3270 (class 2604 OID 32878)
+-- Name: ur_trip t_id; Type: DEFAULT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip ALTER COLUMN t_id SET DEFAULT nextval('uniride.ur_trip_t_id_seq'::regclass);
+
+
+--
+-- TOC entry 3274 (class 2604 OID 32903)
+-- Name: ur_trip_validation v_id; Type: DEFAULT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip_validation ALTER COLUMN v_id SET DEFAULT nextval('uniride.ur_trip_validation_v_id_seq'::regclass);
+
+
+--
+-- TOC entry 3252 (class 2604 OID 32797)
+-- Name: ur_user u_id; Type: DEFAULT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_user ALTER COLUMN u_id SET DEFAULT nextval('uniride.ur_user_u_id_seq'::regclass);
+
+
+--
+-- TOC entry 3267 (class 2604 OID 32862)
+-- Name: ur_vehicule v_id; Type: DEFAULT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_vehicule ALTER COLUMN v_id SET DEFAULT nextval('uniride.ur_vehicule_v_id_seq'::regclass);
+
+
+--
+-- TOC entry 3280 (class 2606 OID 32792)
+-- Name: ur_address ur_address_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_address
+    ADD CONSTRAINT ur_address_pkey PRIMARY KEY (a_id);
+
+
+--
+-- TOC entry 3304 (class 2606 OID 32929)
+-- Name: ur_assign ur_assign_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_assign
+    ADD CONSTRAINT ur_assign_pkey PRIMARY KEY (r_id, u_id);
+
+
+--
+-- TOC entry 3288 (class 2606 OID 32836)
+-- Name: ur_document_verification ur_document_verification_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_document_verification
+    ADD CONSTRAINT ur_document_verification_pkey PRIMARY KEY (v_id);
+
+
+--
+-- TOC entry 3290 (class 2606 OID 32852)
+-- Name: ur_documents ur_documents_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_documents
+    ADD CONSTRAINT ur_documents_pkey PRIMARY KEY (d_id);
+
+
+--
+-- TOC entry 3306 (class 2606 OID 32946)
+-- Name: ur_join ur_join_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_join
+    ADD CONSTRAINT ur_join_pkey PRIMARY KEY (u_id, t_id);
+
+
+--
+-- TOC entry 3278 (class 2606 OID 32782)
+-- Name: ur_role ur_role_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_role
+    ADD CONSTRAINT ur_role_pkey PRIMARY KEY (r_id);
+
+
+--
+-- TOC entry 3296 (class 2606 OID 32883)
+-- Name: ur_trip ur_trip_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip
+    ADD CONSTRAINT ur_trip_pkey PRIMARY KEY (t_id);
+
+
+--
+-- TOC entry 3298 (class 2606 OID 32905)
+-- Name: ur_trip_validation ur_trip_validation_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip_validation
+    ADD CONSTRAINT ur_trip_validation_pkey PRIMARY KEY (v_id);
+
+
+--
+-- TOC entry 3300 (class 2606 OID 32909)
+-- Name: ur_trip_validation ur_trip_validation_u_id_1_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip_validation
+    ADD CONSTRAINT ur_trip_validation_u_id_1_key UNIQUE (u_id_1);
+
+
+--
+-- TOC entry 3302 (class 2606 OID 32907)
+-- Name: ur_trip_validation ur_trip_validation_u_id_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip_validation
+    ADD CONSTRAINT ur_trip_validation_u_id_key UNIQUE (u_id);
+
+
+--
+-- TOC entry 3282 (class 2606 OID 32805)
+-- Name: ur_user ur_user_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_user
+    ADD CONSTRAINT ur_user_pkey PRIMARY KEY (u_id);
+
+
+--
+-- TOC entry 3284 (class 2606 OID 32807)
+-- Name: ur_user ur_user_u_login_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_user
+    ADD CONSTRAINT ur_user_u_login_key UNIQUE (u_login);
+
+
+--
+-- TOC entry 3286 (class 2606 OID 32809)
+-- Name: ur_user ur_user_u_student_email_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_user
+    ADD CONSTRAINT ur_user_u_student_email_key UNIQUE (u_student_email);
+
+
+--
+-- TOC entry 3292 (class 2606 OID 32866)
+-- Name: ur_vehicule ur_vehicule_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_vehicule
+    ADD CONSTRAINT ur_vehicule_pkey PRIMARY KEY (v_id);
+
+
+--
+-- TOC entry 3294 (class 2606 OID 32868)
+-- Name: ur_vehicule ur_vehicule_u_id_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_vehicule
+    ADD CONSTRAINT ur_vehicule_u_id_key UNIQUE (u_id);
+
+
+--
+-- TOC entry 3319 (class 2606 OID 32930)
+-- Name: ur_assign ur_assign_r_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_assign
+    ADD CONSTRAINT ur_assign_r_id_fkey FOREIGN KEY (r_id) REFERENCES uniride.ur_role(r_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3320 (class 2606 OID 32935)
+-- Name: ur_assign ur_assign_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_assign
+    ADD CONSTRAINT ur_assign_u_id_fkey FOREIGN KEY (u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3310 (class 2606 OID 32837)
+-- Name: ur_document_verification ur_document_verification_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_document_verification
+    ADD CONSTRAINT ur_document_verification_u_id_fkey FOREIGN KEY (u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3311 (class 2606 OID 32853)
+-- Name: ur_documents ur_documents_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_documents
+    ADD CONSTRAINT ur_documents_u_id_fkey FOREIGN KEY (u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3321 (class 2606 OID 32952)
+-- Name: ur_join ur_join_t_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_join
+    ADD CONSTRAINT ur_join_t_id_fkey FOREIGN KEY (t_id) REFERENCES uniride.ur_trip(t_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3322 (class 2606 OID 32947)
+-- Name: ur_join ur_join_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_join
+    ADD CONSTRAINT ur_join_u_id_fkey FOREIGN KEY (u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3313 (class 2606 OID 32894)
+-- Name: ur_trip ur_trip_t_address_arrival_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip
+    ADD CONSTRAINT ur_trip_t_address_arrival_id_fkey FOREIGN KEY (t_address_arrival_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3314 (class 2606 OID 32889)
+-- Name: ur_trip ur_trip_t_address_departure_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip
+    ADD CONSTRAINT ur_trip_t_address_departure_id_fkey FOREIGN KEY (t_address_departure_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3315 (class 2606 OID 32884)
+-- Name: ur_trip ur_trip_t_user_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip
+    ADD CONSTRAINT ur_trip_t_user_id_fkey FOREIGN KEY (t_user_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3316 (class 2606 OID 32915)
+-- Name: ur_trip_validation ur_trip_validation_t_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip_validation
+    ADD CONSTRAINT ur_trip_validation_t_id_fkey FOREIGN KEY (t_id) REFERENCES uniride.ur_trip(t_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3317 (class 2606 OID 32920)
+-- Name: ur_trip_validation ur_trip_validation_u_id_1_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip_validation
+    ADD CONSTRAINT ur_trip_validation_u_id_1_fkey FOREIGN KEY (u_id_1) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3318 (class 2606 OID 32910)
+-- Name: ur_trip_validation ur_trip_validation_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_trip_validation
+    ADD CONSTRAINT ur_trip_validation_u_id_fkey FOREIGN KEY (u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3307 (class 2606 OID 32820)
+-- Name: ur_user ur_user_r_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_user
+    ADD CONSTRAINT ur_user_r_id_fkey FOREIGN KEY (r_id) REFERENCES uniride.ur_role(r_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3308 (class 2606 OID 32810)
+-- Name: ur_user ur_user_u_home_address_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_user
+    ADD CONSTRAINT ur_user_u_home_address_id_fkey FOREIGN KEY (u_home_address_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3309 (class 2606 OID 32815)
+-- Name: ur_user ur_user_u_work_address_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_user
+    ADD CONSTRAINT ur_user_u_work_address_id_fkey FOREIGN KEY (u_work_address_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3312 (class 2606 OID 32869)
+-- Name: ur_vehicule ur_vehicule_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE ONLY uniride.ur_vehicule
+    ADD CONSTRAINT ur_vehicule_u_id_fkey FOREIGN KEY (u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
+
+
+-- Completed on 2024-01-05 18:35:09 UTC
+
+--
+-- PostgreSQL database dump complete
+--
+
