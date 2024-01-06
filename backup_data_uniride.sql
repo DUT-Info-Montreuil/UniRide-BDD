@@ -5,7 +5,7 @@
 -- Dumped from database version 16.1 (Debian 16.1-1.pgdg120+1)
 -- Dumped by pg_dump version 16.1
 
--- Started on 2024-01-05 18:36:35 UTC
+-- Started on 2024-01-06 13:06:33 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -49,7 +49,6 @@ INSERT INTO uniride.ur_role VALUES (3, 'pending', 'Utilisateur qui as pas valid�
 -- Data for Name: ur_user; Type: TABLE DATA; Schema: uniride; Owner: rayan
 --
 
-INSERT INTO uniride.ur_user VALUES (1, 3, 'fhmmgh', 'castex', 'syanklmdfffffffg@iut.univ-paris8.fr', '$2b$12$CrXbxXB4ZQhZSxmI5/1KxusaDh8sUc7Z7FVgXel03jFxAAKcqwbwq', '2024-01-05 18:22:00.595781', '2024-01-05 18:22:00.595781', NULL, 'H', 'jean', '0781787554', false, 3, NULL, NULL, NULL);
 INSERT INTO uniride.ur_user VALUES (2, 3, 'jdupont', 'Dupont', 'jdupont@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'M', 'Jean', '0601122334', false, 3, NULL, NULL, NULL);
 INSERT INTO uniride.ur_user VALUES (3, 3, 'smartin', 'Martin', 'smartin@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'F', 'Sophie', '0609876543', false, 3, NULL, NULL, NULL);
 INSERT INTO uniride.ur_user VALUES (4, 3, 'fperez', 'Perez', 'fperez@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'M', 'François', '0605556667', false, 3, NULL, NULL, NULL);
@@ -58,10 +57,14 @@ INSERT INTO uniride.ur_user VALUES (6, 3, 'rmartinez', 'Martinez', 'rmartinez@iu
 INSERT INTO uniride.ur_user VALUES (7, 3, 'pgarcia', 'Garcia', 'pgarcia@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'F', 'Pablo', '0607778889', false, 3, NULL, NULL, NULL);
 INSERT INTO uniride.ur_user VALUES (8, 3, 'adelacroix', 'Delacroix', 'adelacroix@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'M', 'Antoine', '0601234567', false, 3, NULL, NULL, NULL);
 INSERT INTO uniride.ur_user VALUES (9, 3, 'bthomas', 'Thomas', 'bthomas@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'F', 'Béatrice', '0609876543', false, 3, NULL, NULL, NULL);
-INSERT INTO uniride.ur_user VALUES (10, 3, 'gmoreau', 'Moreau', 'gmoreau@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'M', 'Gabrielle', '0605556667', false, 3, NULL, NULL, NULL);
 INSERT INTO uniride.ur_user VALUES (11, 3, 'hleclerc', 'Leclerc', 'hleclerc@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'F', 'Henri', '0601112233', false, 3, NULL, NULL, NULL);
-INSERT INTO uniride.ur_user VALUES (12, 3, 'jleroux', 'Le Roux', 'jleroux@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'M', 'Julie', '0609998887', false, 3, NULL, NULL, NULL);
-INSERT INTO uniride.ur_user VALUES (13, 3, 'testtest', 'testtest', 'testtest@iut.univ-paris8.fr', '$2b$12$CrXbxXB4ZQhZSxmI5/1KxusaDh8sUc7Z7FVgXel03jFxAAKcqwbwq', '2024-01-05 18:27:39.809473', '2024-01-05 18:27:39.809473', NULL, 'H', 'testtest', '0781787554', false, 3, NULL, NULL, NULL);
+INSERT INTO uniride.ur_user VALUES (10, 1, 'gmoreau', 'Moreau', 'gmoreau@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'M', 'Gabrielle', '0605556667', false, 3, NULL, NULL, NULL);
+INSERT INTO uniride.ur_user VALUES (12, 2, 'jleroux', 'Le Roux', 'jleroux@iut.univ-paris.fr', '$2b$12$.e1z9Oj7OFux0.DT.VnBm.J39L//PpFvjk.rZ3yCTBnZBPPQj4EHO', '2024-01-05 18:22:15.730821', '2024-01-05 18:22:15.730821', NULL, 'M', 'Julie', '0609998887', false, 3, NULL, NULL, NULL);
+INSERT INTO uniride.ur_user VALUES (47, 3, 'fraise', 'FRAISE', 'fraise@iut.univ-paris8.fr', '$2b$12$CrXbxXB4ZQhZSxmI5/1Kxuv6mhtE6JP/LJtN1ZZarrRBb.L3052AC', '2024-01-05 20:44:59.310525', '2024-01-05 20:44:59.310525', NULL, 'H', 'fraise', '0123456789', false, 3, '', NULL, NULL);
+INSERT INTO uniride.ur_user VALUES (48, 3, 'Driver', 'DeLaPlace', 'aybouazizz@iut.univ-paris8.fr', '$2b$12$CrXbxXB4ZQhZSxmI5/1Kxuv6mhtE6JP/LJtN1ZZarrRBb.L3052AC', '2024-01-05 20:54:11.653437', '2024-01-05 20:54:11.653437', NULL, 'H', 'maxime', '0625365425', false, 3, '', NULL, NULL);
+INSERT INTO uniride.ur_user VALUES (49, 1, 'aybouaziz', 'Ayoub', 'aybouaziz@iut.univ-paris8.fr', '$2b$12$CrXbxXB4ZQhZSxmI5/1Kxuv6mhtE6JP/LJtN1ZZarrRBb.L3052AC', '2024-01-05 20:55:55.004476', '2024-01-05 20:55:55.004476', NULL, 'H', 'Bouaziz', '0625365425', true, 3, '', NULL, NULL);
+INSERT INTO uniride.ur_user VALUES (13, 3, 'testtest', 'testtest', 'testtest@iut.univ-paris8.fr', '$2b$12$CrXbxXB4ZQhZSxmI5/1KxusaDh8sUc7Z7FVgXel03jFxAAKcqwbwq', '2024-01-05 18:27:39.809473', '2024-01-05 18:27:39.809473', NULL, 'H', 'testtest', '0781787554', true, 3, NULL, NULL, NULL);
+INSERT INTO uniride.ur_user VALUES (1, 3, 'fhmmgh', 'castex', 'syanklmdfffffffg@iut.univ-paris8.fr', '$2b$12$CrXbxXB4ZQhZSxmI5/1KxusaDh8sUc7Z7FVgXel03jFxAAKcqwbwq', '2024-01-05 18:22:00.595781', '2024-01-05 18:22:00.595781', NULL, 'H', 'jean', '0781787554', true, 3, NULL, NULL, NULL);
 
 
 --
@@ -78,8 +81,10 @@ INSERT INTO uniride.ur_user VALUES (13, 3, 'testtest', 'testtest', 'testtest@iut
 -- Data for Name: ur_document_verification; Type: TABLE DATA; Schema: uniride; Owner: rayan
 --
 
-INSERT INTO uniride.ur_document_verification VALUES (1, 0, 0, 0, 0, '2024-01-05 18:22:01.008229', 1);
-INSERT INTO uniride.ur_document_verification VALUES (2, 0, 0, 0, 0, '2024-01-05 18:27:40.193474', 13);
+INSERT INTO uniride.ur_document_verification VALUES (3, 0, 0, 0, 0, '2024-01-05 20:44:59.930202', 47, '', '', '', '');
+INSERT INTO uniride.ur_document_verification VALUES (4, 0, 0, 0, 0, '2024-01-05 20:55:55.299011', 49, '', '', '', '');
+INSERT INTO uniride.ur_document_verification VALUES (2, -1, -1, -1, -1, '2024-01-05 18:27:40.193474', 13, 'dfjnjk;dbfhn', 'bz ta mere', 'document perimé', 'perimé');
+INSERT INTO uniride.ur_document_verification VALUES (1, -1, -1, -1, -1, '2024-01-05 18:22:01.008229', 1, 'ddazdza', '', 'dzadzad', 'pas bon');
 
 
 --
@@ -90,6 +95,8 @@ INSERT INTO uniride.ur_document_verification VALUES (2, 0, 0, 0, 0, '2024-01-05 
 
 INSERT INTO uniride.ur_documents VALUES (1, '1.jpg', NULL, NULL, NULL, '2024-01-05 18:22:00.840604', '2024-01-05 18:22:01.008229', 1);
 INSERT INTO uniride.ur_documents VALUES (2, '13.jpg', NULL, NULL, NULL, '2024-01-05 18:27:40.039003', '2024-01-05 18:27:40.193474', 13);
+INSERT INTO uniride.ur_documents VALUES (3, NULL, NULL, NULL, NULL, '2024-01-05 20:44:59.930202', '2024-01-05 20:44:59.930202', 47);
+INSERT INTO uniride.ur_documents VALUES (4, NULL, NULL, NULL, NULL, '2024-01-05 20:55:55.299011', '2024-01-05 20:55:55.299011', 49);
 
 
 --
@@ -101,6 +108,7 @@ INSERT INTO uniride.ur_documents VALUES (2, '13.jpg', NULL, NULL, NULL, '2024-01
 INSERT INTO uniride.ur_trip VALUES (1, 2, '2024-01-05 18:22:15.730821', '2023-12-15 09:00:00', 1, 2.00, 2, 3, 1, 1.00);
 INSERT INTO uniride.ur_trip VALUES (2, 2, '2024-01-05 18:22:15.730821', '2023-12-15 09:00:00', 1, 2.00, 2, 4, 1, 1.00);
 INSERT INTO uniride.ur_trip VALUES (3, 3, '2024-01-05 18:29:32.782706', '2024-01-19 09:00:00', 1, 0.00, 12, 5, 1, 1.00);
+INSERT INTO uniride.ur_trip VALUES (4, 3, '2024-01-05 20:33:15.516314', '2024-01-19 17:30:00', 1, 0.00, 13, 5, 1, 1.00);
 
 
 --
@@ -109,6 +117,8 @@ INSERT INTO uniride.ur_trip VALUES (3, 3, '2024-01-05 18:29:32.782706', '2024-01
 -- Data for Name: ur_join; Type: TABLE DATA; Schema: uniride; Owner: rayan
 --
 
+INSERT INTO uniride.ur_join VALUES (1, 4, 1, 1, '2024-01-05 20:34:32.911725');
+INSERT INTO uniride.ur_join VALUES (13, 3, 1, 1, '2024-01-05 20:25:07.379172');
 
 
 --
@@ -122,9 +132,10 @@ INSERT INTO uniride.ur_trip VALUES (3, 3, '2024-01-05 18:29:32.782706', '2024-01
 --
 -- TOC entry 3447 (class 0 OID 32859)
 -- Dependencies: 227
--- Data for Name: ur_vehicule; Type: TABLE DATA; Schema: uniride; Owner: rayan
+-- Data for Name: ur_vehicle; Type: TABLE DATA; Schema: uniride; Owner: rayan
 --
 
+INSERT INTO uniride.ur_vehicle VALUES (10, 'C3', 'CP-123-ER', 'FR', 'gris', 'Citroen', 4, '2024-01-05 21:53:46.420856', '2024-01-05 21:53:46.420856', 49);
 
 
 --
@@ -142,7 +153,7 @@ SELECT pg_catalog.setval('uniride.ur_address_a_id_seq', 5, true);
 -- Name: ur_document_verification_v_id_seq; Type: SEQUENCE SET; Schema: uniride; Owner: rayan
 --
 
-SELECT pg_catalog.setval('uniride.ur_document_verification_v_id_seq', 2, true);
+SELECT pg_catalog.setval('uniride.ur_document_verification_v_id_seq', 4, true);
 
 
 --
@@ -151,7 +162,7 @@ SELECT pg_catalog.setval('uniride.ur_document_verification_v_id_seq', 2, true);
 -- Name: ur_documents_d_id_seq; Type: SEQUENCE SET; Schema: uniride; Owner: rayan
 --
 
-SELECT pg_catalog.setval('uniride.ur_documents_d_id_seq', 2, true);
+SELECT pg_catalog.setval('uniride.ur_documents_d_id_seq', 4, true);
 
 
 --
@@ -169,7 +180,7 @@ SELECT pg_catalog.setval('uniride.ur_role_r_id_seq', 1, false);
 -- Name: ur_trip_t_id_seq; Type: SEQUENCE SET; Schema: uniride; Owner: rayan
 --
 
-SELECT pg_catalog.setval('uniride.ur_trip_t_id_seq', 3, true);
+SELECT pg_catalog.setval('uniride.ur_trip_t_id_seq', 4, true);
 
 
 --
@@ -187,7 +198,7 @@ SELECT pg_catalog.setval('uniride.ur_trip_validation_v_id_seq', 1, false);
 -- Name: ur_user_u_id_seq; Type: SEQUENCE SET; Schema: uniride; Owner: rayan
 --
 
-SELECT pg_catalog.setval('uniride.ur_user_u_id_seq', 13, true);
+SELECT pg_catalog.setval('uniride.ur_user_u_id_seq', 49, true);
 
 
 --
@@ -196,10 +207,10 @@ SELECT pg_catalog.setval('uniride.ur_user_u_id_seq', 13, true);
 -- Name: ur_vehicule_v_id_seq; Type: SEQUENCE SET; Schema: uniride; Owner: rayan
 --
 
-SELECT pg_catalog.setval('uniride.ur_vehicule_v_id_seq', 1, false);
+SELECT pg_catalog.setval('uniride.ur_vehicule_v_id_seq', 11, true);
 
 
--- Completed on 2024-01-05 18:36:37 UTC
+-- Completed on 2024-01-06 13:06:35 UTC
 
 --
 -- PostgreSQL database dump complete
