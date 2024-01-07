@@ -5,7 +5,7 @@
 -- Dumped from database version 16.1 (Debian 16.1-1.pgdg120+1)
 -- Dumped by pg_dump version 16.1
 
--- Started on 2024-01-06 13:05:27 UTC
+-- Started on 2024-01-07 15:01:08 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -766,7 +766,7 @@ ALTER TABLE ONLY uniride.ur_vehicle
     ADD CONSTRAINT ur_vehicule_u_id_fkey FOREIGN KEY (u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
 
 
--- Completed on 2024-01-06 13:05:30 UTC
+-- Completed on 2024-01-07 15:01:09 UTC
 
 --
 -- PostgreSQL database dump complete
