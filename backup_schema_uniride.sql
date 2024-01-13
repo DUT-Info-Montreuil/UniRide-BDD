@@ -5,7 +5,7 @@
 -- Dumped from database version 16.1 (Debian 16.1-1.pgdg120+1)
 -- Dumped by pg_dump version 16.1
 
--- Started on 2024-01-12 14:23:05 UTC
+-- Started on 2024-01-13 14:36:58 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -68,7 +68,7 @@ CREATE SEQUENCE uniride.ur_address_a_id_seq
 ALTER SEQUENCE uniride.ur_address_a_id_seq OWNER TO rayan;
 
 --
--- TOC entry 3497 (class 0 OID 0)
+-- TOC entry 3498 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: ur_address_a_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
 --
@@ -128,7 +128,7 @@ CREATE SEQUENCE uniride.ur_document_verification_v_id_seq
 ALTER SEQUENCE uniride.ur_document_verification_v_id_seq OWNER TO rayan;
 
 --
--- TOC entry 3498 (class 0 OID 0)
+-- TOC entry 3499 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: ur_document_verification_v_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
 --
@@ -172,7 +172,7 @@ CREATE SEQUENCE uniride.ur_documents_d_id_seq
 ALTER SEQUENCE uniride.ur_documents_d_id_seq OWNER TO rayan;
 
 --
--- TOC entry 3499 (class 0 OID 0)
+-- TOC entry 3500 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: ur_documents_d_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
 --
@@ -216,7 +216,7 @@ CREATE SEQUENCE uniride.ur_join_j_id_seq
 ALTER SEQUENCE uniride.ur_join_j_id_seq OWNER TO rayan;
 
 --
--- TOC entry 3500 (class 0 OID 0)
+-- TOC entry 3501 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: ur_join_j_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
 --
@@ -226,10 +226,10 @@ ALTER SEQUENCE uniride.ur_join_j_id_seq OWNED BY uniride.ur_join.j_id;
 
 --
 -- TOC entry 235 (class 1259 OID 1105940)
--- Name: ur_note; Type: TABLE; Schema: uniride; Owner: rayan
+-- Name: ur_rating; Type: TABLE; Schema: uniride; Owner: rayan
 --
 
-CREATE TABLE uniride.ur_note (
+CREATE TABLE uniride.ur_rating (
     n_id integer NOT NULL,
     n_value integer,
     u_id integer NOT NULL,
@@ -238,7 +238,7 @@ CREATE TABLE uniride.ur_note (
 );
 
 
-ALTER TABLE uniride.ur_note OWNER TO rayan;
+ALTER TABLE uniride.ur_rating OWNER TO rayan;
 
 --
 -- TOC entry 234 (class 1259 OID 1105935)
@@ -249,7 +249,8 @@ CREATE TABLE uniride.ur_rating_criteria (
     rc_id integer NOT NULL,
     rc_name character varying(50),
     rc_description character varying(50),
-    rc_status integer DEFAULT 0 NOT NULL
+    rc_status integer DEFAULT 0 NOT NULL,
+    r_id integer
 );
 
 
@@ -262,6 +263,21 @@ ALTER TABLE uniride.ur_rating_criteria OWNER TO rayan;
 
 ALTER TABLE uniride.ur_rating_criteria ALTER COLUMN rc_id ADD GENERATED ALWAYS AS IDENTITY (
     SEQUENCE NAME uniride.ur_rating_criteria_rc_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 238 (class 1259 OID 2039927)
+-- Name: ur_rating_n_id_seq; Type: SEQUENCE; Schema: uniride; Owner: rayan
+--
+
+ALTER TABLE uniride.ur_rating ALTER COLUMN n_id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME uniride.ur_rating_n_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -303,7 +319,7 @@ CREATE SEQUENCE uniride.ur_role_r_id_seq
 ALTER SEQUENCE uniride.ur_role_r_id_seq OWNER TO rayan;
 
 --
--- TOC entry 3501 (class 0 OID 0)
+-- TOC entry 3502 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: ur_role_r_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
 --
@@ -349,7 +365,7 @@ CREATE SEQUENCE uniride.ur_trip_t_id_seq
 ALTER SEQUENCE uniride.ur_trip_t_id_seq OWNER TO rayan;
 
 --
--- TOC entry 3502 (class 0 OID 0)
+-- TOC entry 3503 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: ur_trip_t_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
 --
@@ -390,7 +406,7 @@ CREATE SEQUENCE uniride.ur_trip_validation_v_id_seq
 ALTER SEQUENCE uniride.ur_trip_validation_v_id_seq OWNER TO rayan;
 
 --
--- TOC entry 3503 (class 0 OID 0)
+-- TOC entry 3504 (class 0 OID 0)
 -- Dependencies: 230
 -- Name: ur_trip_validation_v_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
 --
@@ -443,7 +459,7 @@ CREATE SEQUENCE uniride.ur_user_u_id_seq
 ALTER SEQUENCE uniride.ur_user_u_id_seq OWNER TO rayan;
 
 --
--- TOC entry 3504 (class 0 OID 0)
+-- TOC entry 3505 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: ur_user_u_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
 --
@@ -489,7 +505,7 @@ CREATE SEQUENCE uniride.ur_vehicule_v_id_seq
 ALTER SEQUENCE uniride.ur_vehicule_v_id_seq OWNER TO rayan;
 
 --
--- TOC entry 3505 (class 0 OID 0)
+-- TOC entry 3506 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: ur_vehicule_v_id_seq; Type: SEQUENCE OWNED BY; Schema: uniride; Owner: rayan
 --
@@ -498,7 +514,7 @@ ALTER SEQUENCE uniride.ur_vehicule_v_id_seq OWNED BY uniride.ur_vehicle.v_id;
 
 
 --
--- TOC entry 3260 (class 2604 OID 32787)
+-- TOC entry 3261 (class 2604 OID 32787)
 -- Name: ur_address a_id; Type: DEFAULT; Schema: uniride; Owner: rayan
 --
 
@@ -506,7 +522,7 @@ ALTER TABLE ONLY uniride.ur_address ALTER COLUMN a_id SET DEFAULT nextval('uniri
 
 
 --
--- TOC entry 3268 (class 2604 OID 32829)
+-- TOC entry 3269 (class 2604 OID 32829)
 -- Name: ur_document_verification v_id; Type: DEFAULT; Schema: uniride; Owner: rayan
 --
 
@@ -514,7 +530,7 @@ ALTER TABLE ONLY uniride.ur_document_verification ALTER COLUMN v_id SET DEFAULT 
 
 
 --
--- TOC entry 3278 (class 2604 OID 32846)
+-- TOC entry 3279 (class 2604 OID 32846)
 -- Name: ur_documents d_id; Type: DEFAULT; Schema: uniride; Owner: rayan
 --
 
@@ -522,7 +538,7 @@ ALTER TABLE ONLY uniride.ur_documents ALTER COLUMN d_id SET DEFAULT nextval('uni
 
 
 --
--- TOC entry 3292 (class 2604 OID 2031732)
+-- TOC entry 3293 (class 2604 OID 2031732)
 -- Name: ur_join j_id; Type: DEFAULT; Schema: uniride; Owner: rayan
 --
 
@@ -530,7 +546,7 @@ ALTER TABLE ONLY uniride.ur_join ALTER COLUMN j_id SET DEFAULT nextval('uniride.
 
 
 --
--- TOC entry 3257 (class 2604 OID 32778)
+-- TOC entry 3258 (class 2604 OID 32778)
 -- Name: ur_role r_id; Type: DEFAULT; Schema: uniride; Owner: rayan
 --
 
@@ -538,7 +554,7 @@ ALTER TABLE ONLY uniride.ur_role ALTER COLUMN r_id SET DEFAULT nextval('uniride.
 
 
 --
--- TOC entry 3284 (class 2604 OID 32878)
+-- TOC entry 3285 (class 2604 OID 32878)
 -- Name: ur_trip t_id; Type: DEFAULT; Schema: uniride; Owner: rayan
 --
 
@@ -546,7 +562,7 @@ ALTER TABLE ONLY uniride.ur_trip ALTER COLUMN t_id SET DEFAULT nextval('uniride.
 
 
 --
--- TOC entry 3288 (class 2604 OID 32903)
+-- TOC entry 3289 (class 2604 OID 32903)
 -- Name: ur_trip_validation v_id; Type: DEFAULT; Schema: uniride; Owner: rayan
 --
 
@@ -554,7 +570,7 @@ ALTER TABLE ONLY uniride.ur_trip_validation ALTER COLUMN v_id SET DEFAULT nextva
 
 
 --
--- TOC entry 3262 (class 2604 OID 32797)
+-- TOC entry 3263 (class 2604 OID 32797)
 -- Name: ur_user u_id; Type: DEFAULT; Schema: uniride; Owner: rayan
 --
 
@@ -562,7 +578,7 @@ ALTER TABLE ONLY uniride.ur_user ALTER COLUMN u_id SET DEFAULT nextval('uniride.
 
 
 --
--- TOC entry 3281 (class 2604 OID 32862)
+-- TOC entry 3282 (class 2604 OID 32862)
 -- Name: ur_vehicle v_id; Type: DEFAULT; Schema: uniride; Owner: rayan
 --
 
@@ -570,7 +586,7 @@ ALTER TABLE ONLY uniride.ur_vehicle ALTER COLUMN v_id SET DEFAULT nextval('uniri
 
 
 --
--- TOC entry 3297 (class 2606 OID 32792)
+-- TOC entry 3298 (class 2606 OID 32792)
 -- Name: ur_address ur_address_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -579,7 +595,7 @@ ALTER TABLE ONLY uniride.ur_address
 
 
 --
--- TOC entry 3321 (class 2606 OID 32929)
+-- TOC entry 3322 (class 2606 OID 32929)
 -- Name: ur_assign ur_assign_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -588,7 +604,7 @@ ALTER TABLE ONLY uniride.ur_assign
 
 
 --
--- TOC entry 3305 (class 2606 OID 32836)
+-- TOC entry 3306 (class 2606 OID 32836)
 -- Name: ur_document_verification ur_document_verification_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -597,7 +613,7 @@ ALTER TABLE ONLY uniride.ur_document_verification
 
 
 --
--- TOC entry 3307 (class 2606 OID 32852)
+-- TOC entry 3308 (class 2606 OID 32852)
 -- Name: ur_documents ur_documents_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -606,7 +622,7 @@ ALTER TABLE ONLY uniride.ur_documents
 
 
 --
--- TOC entry 3325 (class 2606 OID 2031737)
+-- TOC entry 3326 (class 2606 OID 2031737)
 -- Name: ur_join ur_join_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -615,16 +631,16 @@ ALTER TABLE ONLY uniride.ur_join
 
 
 --
--- TOC entry 3329 (class 2606 OID 1105944)
--- Name: ur_note ur_note_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
+-- TOC entry 3330 (class 2606 OID 1105944)
+-- Name: ur_rating ur_note_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
-ALTER TABLE ONLY uniride.ur_note
+ALTER TABLE ONLY uniride.ur_rating
     ADD CONSTRAINT ur_note_pkey PRIMARY KEY (n_id);
 
 
 --
--- TOC entry 3327 (class 2606 OID 1105939)
+-- TOC entry 3328 (class 2606 OID 1105939)
 -- Name: ur_rating_criteria ur_rating_criteria_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -633,7 +649,7 @@ ALTER TABLE ONLY uniride.ur_rating_criteria
 
 
 --
--- TOC entry 3295 (class 2606 OID 32782)
+-- TOC entry 3296 (class 2606 OID 32782)
 -- Name: ur_role ur_role_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -642,7 +658,7 @@ ALTER TABLE ONLY uniride.ur_role
 
 
 --
--- TOC entry 3313 (class 2606 OID 32883)
+-- TOC entry 3314 (class 2606 OID 32883)
 -- Name: ur_trip ur_trip_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -651,7 +667,7 @@ ALTER TABLE ONLY uniride.ur_trip
 
 
 --
--- TOC entry 3315 (class 2606 OID 32905)
+-- TOC entry 3316 (class 2606 OID 32905)
 -- Name: ur_trip_validation ur_trip_validation_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -660,7 +676,7 @@ ALTER TABLE ONLY uniride.ur_trip_validation
 
 
 --
--- TOC entry 3317 (class 2606 OID 32909)
+-- TOC entry 3318 (class 2606 OID 32909)
 -- Name: ur_trip_validation ur_trip_validation_u_id_1_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -669,7 +685,7 @@ ALTER TABLE ONLY uniride.ur_trip_validation
 
 
 --
--- TOC entry 3319 (class 2606 OID 32907)
+-- TOC entry 3320 (class 2606 OID 32907)
 -- Name: ur_trip_validation ur_trip_validation_u_id_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -678,7 +694,7 @@ ALTER TABLE ONLY uniride.ur_trip_validation
 
 
 --
--- TOC entry 3299 (class 2606 OID 32805)
+-- TOC entry 3300 (class 2606 OID 32805)
 -- Name: ur_user ur_user_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -687,7 +703,7 @@ ALTER TABLE ONLY uniride.ur_user
 
 
 --
--- TOC entry 3301 (class 2606 OID 32807)
+-- TOC entry 3302 (class 2606 OID 32807)
 -- Name: ur_user ur_user_u_login_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -696,7 +712,7 @@ ALTER TABLE ONLY uniride.ur_user
 
 
 --
--- TOC entry 3303 (class 2606 OID 32809)
+-- TOC entry 3304 (class 2606 OID 32809)
 -- Name: ur_user ur_user_u_student_email_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -705,7 +721,7 @@ ALTER TABLE ONLY uniride.ur_user
 
 
 --
--- TOC entry 3309 (class 2606 OID 32866)
+-- TOC entry 3310 (class 2606 OID 32866)
 -- Name: ur_vehicle ur_vehicule_pkey; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -714,7 +730,7 @@ ALTER TABLE ONLY uniride.ur_vehicle
 
 
 --
--- TOC entry 3311 (class 2606 OID 32868)
+-- TOC entry 3312 (class 2606 OID 32868)
 -- Name: ur_vehicle ur_vehicule_u_id_key; Type: CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -723,7 +739,7 @@ ALTER TABLE ONLY uniride.ur_vehicle
 
 
 --
--- TOC entry 3322 (class 1259 OID 2031739)
+-- TOC entry 3323 (class 1259 OID 2031739)
 -- Name: idx_t_id; Type: INDEX; Schema: uniride; Owner: rayan
 --
 
@@ -731,7 +747,7 @@ CREATE INDEX idx_t_id ON uniride.ur_join USING btree (t_id);
 
 
 --
--- TOC entry 3323 (class 1259 OID 2031738)
+-- TOC entry 3324 (class 1259 OID 2031738)
 -- Name: idx_u_id; Type: INDEX; Schema: uniride; Owner: rayan
 --
 
@@ -739,7 +755,7 @@ CREATE INDEX idx_u_id ON uniride.ur_join USING btree (u_id);
 
 
 --
--- TOC entry 3342 (class 2606 OID 32930)
+-- TOC entry 3343 (class 2606 OID 32930)
 -- Name: ur_assign ur_assign_r_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -748,7 +764,7 @@ ALTER TABLE ONLY uniride.ur_assign
 
 
 --
--- TOC entry 3343 (class 2606 OID 32935)
+-- TOC entry 3344 (class 2606 OID 32935)
 -- Name: ur_assign ur_assign_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -757,7 +773,7 @@ ALTER TABLE ONLY uniride.ur_assign
 
 
 --
--- TOC entry 3333 (class 2606 OID 32837)
+-- TOC entry 3334 (class 2606 OID 32837)
 -- Name: ur_document_verification ur_document_verification_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -766,7 +782,7 @@ ALTER TABLE ONLY uniride.ur_document_verification
 
 
 --
--- TOC entry 3334 (class 2606 OID 32853)
+-- TOC entry 3335 (class 2606 OID 32853)
 -- Name: ur_documents ur_documents_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -775,7 +791,7 @@ ALTER TABLE ONLY uniride.ur_documents
 
 
 --
--- TOC entry 3344 (class 2606 OID 32952)
+-- TOC entry 3345 (class 2606 OID 32952)
 -- Name: ur_join ur_join_t_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -784,7 +800,7 @@ ALTER TABLE ONLY uniride.ur_join
 
 
 --
--- TOC entry 3345 (class 2606 OID 32947)
+-- TOC entry 3346 (class 2606 OID 32947)
 -- Name: ur_join ur_join_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -793,34 +809,34 @@ ALTER TABLE ONLY uniride.ur_join
 
 
 --
--- TOC entry 3346 (class 2606 OID 1105955)
--- Name: ur_note ur_note_rc_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+-- TOC entry 3347 (class 2606 OID 1105955)
+-- Name: ur_rating ur_note_rc_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
-ALTER TABLE ONLY uniride.ur_note
+ALTER TABLE ONLY uniride.ur_rating
     ADD CONSTRAINT ur_note_rc_id_fkey FOREIGN KEY (rc_id) REFERENCES uniride.ur_rating_criteria(rc_id);
 
 
 --
--- TOC entry 3347 (class 2606 OID 1105950)
--- Name: ur_note ur_note_t_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+-- TOC entry 3348 (class 2606 OID 1105950)
+-- Name: ur_rating ur_note_t_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
-ALTER TABLE ONLY uniride.ur_note
+ALTER TABLE ONLY uniride.ur_rating
     ADD CONSTRAINT ur_note_t_id_fkey FOREIGN KEY (t_id) REFERENCES uniride.ur_trip(t_id);
 
 
 --
--- TOC entry 3348 (class 2606 OID 1105945)
--- Name: ur_note ur_note_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
+-- TOC entry 3349 (class 2606 OID 1105945)
+-- Name: ur_rating ur_note_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
-ALTER TABLE ONLY uniride.ur_note
+ALTER TABLE ONLY uniride.ur_rating
     ADD CONSTRAINT ur_note_u_id_fkey FOREIGN KEY (u_id) REFERENCES uniride.ur_user(u_id);
 
 
 --
--- TOC entry 3336 (class 2606 OID 32894)
+-- TOC entry 3337 (class 2606 OID 32894)
 -- Name: ur_trip ur_trip_t_address_arrival_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -829,7 +845,7 @@ ALTER TABLE ONLY uniride.ur_trip
 
 
 --
--- TOC entry 3337 (class 2606 OID 32889)
+-- TOC entry 3338 (class 2606 OID 32889)
 -- Name: ur_trip ur_trip_t_address_departure_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -838,7 +854,7 @@ ALTER TABLE ONLY uniride.ur_trip
 
 
 --
--- TOC entry 3338 (class 2606 OID 32884)
+-- TOC entry 3339 (class 2606 OID 32884)
 -- Name: ur_trip ur_trip_t_user_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -847,7 +863,7 @@ ALTER TABLE ONLY uniride.ur_trip
 
 
 --
--- TOC entry 3339 (class 2606 OID 32915)
+-- TOC entry 3340 (class 2606 OID 32915)
 -- Name: ur_trip_validation ur_trip_validation_t_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -856,7 +872,7 @@ ALTER TABLE ONLY uniride.ur_trip_validation
 
 
 --
--- TOC entry 3340 (class 2606 OID 32920)
+-- TOC entry 3341 (class 2606 OID 32920)
 -- Name: ur_trip_validation ur_trip_validation_u_id_1_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -865,7 +881,7 @@ ALTER TABLE ONLY uniride.ur_trip_validation
 
 
 --
--- TOC entry 3341 (class 2606 OID 32910)
+-- TOC entry 3342 (class 2606 OID 32910)
 -- Name: ur_trip_validation ur_trip_validation_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -874,7 +890,7 @@ ALTER TABLE ONLY uniride.ur_trip_validation
 
 
 --
--- TOC entry 3330 (class 2606 OID 32820)
+-- TOC entry 3331 (class 2606 OID 32820)
 -- Name: ur_user ur_user_r_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -883,7 +899,7 @@ ALTER TABLE ONLY uniride.ur_user
 
 
 --
--- TOC entry 3331 (class 2606 OID 32810)
+-- TOC entry 3332 (class 2606 OID 32810)
 -- Name: ur_user ur_user_u_home_address_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -892,7 +908,7 @@ ALTER TABLE ONLY uniride.ur_user
 
 
 --
--- TOC entry 3332 (class 2606 OID 32815)
+-- TOC entry 3333 (class 2606 OID 32815)
 -- Name: ur_user ur_user_u_work_address_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -901,7 +917,7 @@ ALTER TABLE ONLY uniride.ur_user
 
 
 --
--- TOC entry 3335 (class 2606 OID 32869)
+-- TOC entry 3336 (class 2606 OID 32869)
 -- Name: ur_vehicle ur_vehicule_u_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
 --
 
@@ -909,7 +925,7 @@ ALTER TABLE ONLY uniride.ur_vehicle
     ADD CONSTRAINT ur_vehicule_u_id_fkey FOREIGN KEY (u_id) REFERENCES uniride.ur_user(u_id) ON DELETE CASCADE;
 
 
--- Completed on 2024-01-12 14:23:07 UTC
+-- Completed on 2024-01-13 14:37:00 UTC
 
 --
 -- PostgreSQL database dump complete
