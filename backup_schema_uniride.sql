@@ -433,9 +433,7 @@ CREATE TABLE uniride.ur_user (
     u_phone_number character varying(10) NOT NULL,
     u_email_verified boolean DEFAULT false NOT NULL,
     u_status integer DEFAULT 3 NOT NULL,
-    u_description character varying(100),
-    u_home_address_id integer,
-    u_work_address_id integer
+    u_description character varying(100)
 );
 
 
@@ -914,23 +912,6 @@ ALTER TABLE ONLY uniride.ur_trip_validation
 ALTER TABLE ONLY uniride.ur_user
     ADD CONSTRAINT ur_user_r_id_fkey FOREIGN KEY (r_id) REFERENCES uniride.ur_role(r_id) ON DELETE CASCADE;
 
-
---
--- TOC entry 3332 (class 2606 OID 32810)
--- Name: ur_user ur_user_u_home_address_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
---
-
-ALTER TABLE ONLY uniride.ur_user
-    ADD CONSTRAINT ur_user_u_home_address_id_fkey FOREIGN KEY (u_home_address_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE;
-
-
---
--- TOC entry 3333 (class 2606 OID 32815)
--- Name: ur_user ur_user_u_work_address_id_fkey; Type: FK CONSTRAINT; Schema: uniride; Owner: rayan
---
-
-ALTER TABLE ONLY uniride.ur_user
-    ADD CONSTRAINT ur_user_u_work_address_id_fkey FOREIGN KEY (u_work_address_id) REFERENCES uniride.ur_address(a_id) ON DELETE CASCADE;
 
 
 --
