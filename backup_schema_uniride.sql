@@ -22,6 +22,7 @@ SET row_security = off;
 -- TOC entry 6 (class 2615 OID 32773)
 -- Name: uniride; Type: SCHEMA; Schema: -; Owner: rayan
 --
+DROP SCHEMA IF EXISTS uniride CASCADE;
 
 CREATE SCHEMA uniride;
 
@@ -427,7 +428,7 @@ CREATE TABLE uniride.ur_user (
     u_password text NOT NULL,
     u_timestamp_creation timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     u_timestamp_modification timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    u_profile_picture text,
+    u_profile_picture text DEFAULT 'default_profile_picture.png',
     u_gender character varying(2) NOT NULL,
     u_firstname character varying(50) NOT NULL,
     u_phone_number character varying(10) NOT NULL,
