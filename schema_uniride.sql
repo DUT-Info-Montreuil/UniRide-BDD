@@ -103,7 +103,8 @@ CREATE TABLE uniride.ur_document_verification (
     v_license_description character varying(255) DEFAULT ''::character varying,
     v_card_description character varying(255) DEFAULT ''::character varying,
     v_school_certificate_description character varying(255) DEFAULT ''::character varying,
-    v_insurance_description character varying(255) DEFAULT ''::character varying
+    v_insurance_description character varying(255) DEFAULT ''::character varying,
+    v_insurance_end_date date
 );
 
 
